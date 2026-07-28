@@ -278,6 +278,47 @@
     color:#8c7b6e;
   }
 
+  /* ---------- report sample ---------- */
+  .report-section{
+    padding:100px 0 130px;
+    text-align:center;
+  }
+  .report-toggle{
+    margin:40px auto 0;
+    display:inline-flex;
+    gap:8px;
+    background:#221d19;
+    border:1px solid var(--line);
+    padding:6px;
+    border-radius:999px;
+  }
+  .report-tab{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:12px;
+    letter-spacing:0.05em;
+    font-weight:500;
+    color:#a99c8b;
+    background:transparent;
+    border:none;
+    padding:9px 22px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:all .2s;
+  }
+  .report-tab.active{
+    background:var(--gold);
+    color:var(--espresso);
+  }
+  .report-frame{
+    margin:36px auto 0;
+    max-width:420px;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 40px 80px -24px rgba(0,0,0,0.6);
+  }
+  .report-frame img{width:100%;display:block;}
+
   /* ---------- stack ---------- */
   .stack{
     background:var(--cream);
@@ -582,6 +623,36 @@
     </div>
   </div>
 </section>
+
+<!-- REPORT SAMPLE -->
+<section class="report-section">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">Sample output</div>
+    <h2 class="section-title" style="text-align:center;">レポート出力例</h2>
+    <p class="section-lede" style="margin-left:auto;margin-right:auto;text-align:center;">同じ面接結果から、日本語・英語・中国語の3言語でレポートを自動生成します。</p>
+
+    <div class="report-toggle">
+      <button class="report-tab active" data-lang="ja">日本語</button>
+      <button class="report-tab" data-lang="en">English</button>
+      <button class="report-tab" data-lang="zh">中文</button>
+    </div>
+
+    <div class="report-frame">
+      <img id="report-img" src="report-ja-1.jpg" alt="レポート出力例">
+    </div>
+  </div>
+</section>
+
+<script>
+  const reportImgs = { ja: 'report-ja-1.jpg', en: 'report-en-1.jpg', zh: 'report-zh-1.jpg' };
+  document.querySelectorAll('.report-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.report-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('report-img').src = reportImgs[btn.dataset.lang];
+    });
+  });
+</script>
 
 <!-- STACK -->
 <section class="stack">
